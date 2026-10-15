@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💜 ARIRANG WORLD TOUR KAOHSIUNG FREEBIES 💜</title>
+    <style>
+        :root {
+            --bts-purple: #5b3069;
+            --bts-light-purple: #7b4b8d;
+            --bts-bg: #f9f5fb;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-sub: #666666;
+            --tag-bg: #f0e6f5;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bts-bg);
+            color: var(--text-main);
+            padding-bottom: 50px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--bts-purple), var(--bts-light-purple));
+            color: white;
+            text-align: center;
+            padding: 24px 16px;
+            box-shadow: 0 4px 10px rgba(91, 48, 105, 0.2);
+        }
+
+        header h1 {
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        /* 日期導覽列 (Day Tabs) */
+        .day-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .day-btn {
+            flex: 1;
+            max-width: 120px;
+            padding: 10px 0;
+            border: 2px solid var(--bts-purple);
+            background: white;
+            color: var(--bts-purple);
+            font-size: 0.95rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .day-btn.active, .day-btn:hover {
+            background: var(--bts-purple);
+            color: white;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        .day-content {
+            display: none;
+        }
+
+        .day-content.active {
+            display: block;
+        }
+
+        /* 分類區塊 */
+        .category-section {
+            margin-bottom: 24px;
+        }
+
+        .category-title {
+            font-size: 1.1rem;
+            color: var(--bts-purple);
+            border-left: 4px solid var(--bts-purple);
+            padding-left: 8px;
+            margin: 16px 0 12px 0;
+            font-weight: bold;
+        }
+
+        /* 應援物卡片 */
+        .freebie-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            display: flex;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .freebie-img {
+            width: 90px;
+            height: 90px;
+            border-radius: 8px;
+            background-color: #eee;
+            object-fit: cover;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.75rem;
+            text-align: center;
+        }
+
+        .freebie-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .freebie-name {
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--text-main);
+        }
+
+        .freebie-detail {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            line-height: 1.4;
+        }
+
+        .freebie-detail span {
+            font-weight: 600;
+            color: var(--bts-light-purple);
+        }
+
+        .btn-link {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 4px 10px;
+            background-color: var(--tag-bg);
+            color: var(--bts-purple);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border-radius: 4px;
+            align-self: flex-start;
+            transition: background 0.2s;
+        }
+
+        .btn-link:hover {
+            background-color: #e2cfe9;
+        }
+
+        .empty-hint {
+            font-size: 0.85rem;
+            color: #999;
+            padding: 8px 0;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>💜 ARIRANG WORLD TOUR KAOHSIUNG FREEBIES 💜</h1>
+    </header>
+
+    <!-- 日期切換按鈕 -->
+    <div class="day-tabs">
+        <button class="day-btn active" onclick="switchDay('day1')">11/19 (Day 1)</button>
+        <button class="day-btn" onclick="switchDay('day2')">11/21 (Day 2)</button>
+        <button class="day-btn" onclick="switchDay('day3')">11/22 (Day 3)</button>
+    </div>
+
+    <div class="container">
+
+        <!-- ==================== 11/19 (Day 1) ==================== -->
+        <div id="day1" class="day-content active">
+            <!-- 包袋類 -->
+            <div class="category-section">
+                <div class="category-title">👜 包袋類</div>
+                <div class="freebie-card">
+                    <!-- 圖片欄位：可替換成您的圖片網址 src="..." -->
+                    <img src="https://via.placeholder.com/90" alt="應援物圖片" class="freebie-img">
+                    <div class="freebie-info">
+                        <div class="freebie-name">範例：南俊手幅帆布托特包</div>
+                        <div class="freebie-detail">📍 <span>時間地點：</span>11/19 14:00｜世運主場館場外看板下</div>
+                        <div class="freebie-detail">📝 <span>領取條件：</span>出示當日演唱會門票 + 追蹤推特帳號</div>
+                        <a href="https://twitter.com" target="_blank" class="btn-link">🔗 原文網址</a>
+                    </div>
+                </div>
+                <div class="empty-hint">更多品項陸續新增中...</div>
+            </div>
+
+            <!-- 吊飾類 -->
+            <div class="category-section">
+                <div class="category-title">🧸 吊飾類</div>
+                <div class="empty-hint">尚無資料，歡迎提供！</div>
+            </div>
+
+            <!-- 其他 -->
+            <div class="category-section">
+                <div class="category-title">✨ 其他</div>
+                <div class="empty-hint">尚無資料，歡迎提供！</div>
+            </div>
+        </div>
+
+        <!-- ==================== 11/21 (Day 2) ==================== -->
+        <div id="day2" class="day-content">
+            <!-- 包袋類 -->
+            <div class="category-section">
+                <div class="category-title">👜 包袋類</div>
+                <div class="empty-hint">尚無資料，歡迎提供！</div>
+            </div>
+
+            <!-- 吊飾類 -->
+            <div class="category-section">
+                <div class="category-title">🧸 吊飾類</div>
+                <div class="freebie-card">
+                    <img src="https://via.placeholder.com/90" alt="應援物圖片" class="freebie-img">
+                    <div class="freebie-info">
+                        <div class="freebie-name">範例：果果小兔壓克力吊飾</div>
+                        <div class="freebie-detail">📍 <span>時間地點：</span>11/21 15:30｜捷運世運站 1號出口</div>
+                        <div class="freebie-detail">📝 <span>領取條件：</span>喊出通關密語「BORAHEE」</div>
+                        <a href="https://twitter.com" target="_blank" class="btn-link">🔗 原文網址</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 其他 -->
+            <div class="category-section">
+                <div class="category-title">✨ 其他</div>
+                <div class="empty-hint">尚無資料，歡迎提供！</div>
+            </div>
+        </div>
+
+        <!-- ==================== 11/22 (Day 3) ==================== -->
+        <div id="day3" class="day-content">
+            <!-- 包袋類 -->
+            <div class="category-section">
+                <div class="category-title">👜 包袋類</div>
+                <div class="empty-hint">尚無資料，歡迎提供！</div>
+            </div>
+
+            <!-- 吊飾類 -->
+            <div class="category-section">
+                <div class="category-title">🧸 吊飾類</div>
+                <div class="empty-hint">尚無資料，歡迎提供！</div>
+            </div>
+
+            <!-- 其他 -->
+            <div class="category-section">
+                <div class="category-title">✨ 其他</div>
+                <div class="freebie-card">
+                    <img src="https://via.placeholder.com/90" alt="應援物圖片" class="freebie-img">
+                    <div class="freebie-info">
+                        <div class="freebie-name">範例：全員透卡組 + 小卡</div>
+                        <div class="freebie-detail">📍 <span>時間地點：</span>11/22 16:00｜場外服務台旁</div>
+                        <div class="freebie-detail">📝 <span>領取條件：</span>不限條件，送完為止</div>
+                        <a href="https://twitter.com" target="_blank" class="btn-link">🔗 原文網址</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // 切換日期的 JavaScript 邏輯
+        function switchDay(dayId) {
+            // 隱藏所有內容
+            const contents = document.querySelectorAll('.day-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // 移除所有按鈕的 active 狀態
+            const buttons = document.querySelectorAll('.day-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // 顯示點選的那一天
+            document.getElementById(dayId).classList.add('active');
+            
+            // 將對應按鈕加上 active
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
