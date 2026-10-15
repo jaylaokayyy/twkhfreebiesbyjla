@@ -299,24 +299,27 @@
 
     <!-- 日期切換按鈕 -->
     <div class="day-tabs">
-        <button class="day-btn" id="btn-day1" onclick="switchDay('day1')">11/19 (Day 1)</button>
-        <button class="day-btn" id="btn-day2" onclick="switchDay('day2')">11/21 (Day 2)</button>
-        <button class="day-btn" id="btn-day3" onclick="switchDay('day3')">11/22 (Day 3)</button>
+        <button class="day-btn active" onclick="switchDay('day1')">11/19 (Day 1)</button>
+        <button class="day-btn" onclick="switchDay('day2')">11/21 (Day 2)</button>
+        <button class="day-btn" onclick="switchDay('day3')">11/22 (Day 3)</button>
     </div>
 
     <div class="container">
 
         <!-- ==================== 11/19 (Day 1) ==================== -->
-        <div id="day1" class="day-content">
+        <div id="day1" class="day-content active">
             <!-- 包袋類 -->
             <div class="category-section">
                 <div class="category-title">👜 包袋類</div>
                 
+                <!-- 應援物卡片範例 -->
                 <div class="freebie-card">
                     <div class="freebie-img-container">
+                        <!-- 大圖預覽 -->
                         <div class="main-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
                             <img src="https://raw.githubusercontent.com/jaylaokayyy/twkhfreebiesbyjla/main/%E8%A2%8B1.jpg" alt="主圖" class="active-main-img">
                         </div>
+                        <!-- 縮圖切換列 -->
                         <div class="thumb-list">
                             <div class="thumb-item active" onclick="changeImage(this, 'https://raw.githubusercontent.com/jaylaokayyy/twkhfreebiesbyjla/main/%E8%A2%8B1.jpg')">
                                 <img src="https://raw.githubusercontent.com/jaylaokayyy/twkhfreebiesbyjla/main/%E8%A2%8B1.jpg" alt="縮圖1">
@@ -334,6 +337,7 @@
                         <div class="freebie-name">團體防潑水購物袋</div>
                         <div class="freebie-detail">📍 <span>時間地點：</span>當天公告｜當天公告</div>
                         
+                        <!-- 條列式領取條件 -->
                         <div class="condition-title">📝 領取條件：</div>
                         <ul class="condition-list">
                             <li>出示任何粉絲證明</li>
@@ -365,37 +369,7 @@
             <!-- 包袋類 -->
             <div class="category-section">
                 <div class="category-title">👜 包袋類</div>
-                
-                <div class="freebie-card">
-                    <div class="freebie-img-container">
-                        <div class="main-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
-                            <img src="https://raw.githubusercontent.com/jaylaokayyy/twkhfreebiesbyjla/main/%E8%A2%8B1.jpg" alt="主圖" class="active-main-img">
-                        </div>
-                        <div class="thumb-list">
-                            <div class="thumb-item active" onclick="changeImage(this, 'https://raw.githubusercontent.com/帳號名稱/專案名稱/main/袋4.webp')">
-                                <img src="https://raw.githubusercontent.com/帳號名稱/專案名稱/main/袋4.webp" alt="縮圖1">
-                            </div>
-                            <div class="thumb-item" onclick="changeImage(this, 'https://raw.githubusercontent.com/帳號名稱/專案名稱/main/袋5.webp')">
-                                <img src="https://raw.githubusercontent.com/帳號名稱/專案名稱/main/袋5.webp" alt="縮圖2">
-                            
-                        </div>
-                    </div>
-
-                    <div class="freebie-info">
-                        <div class="freebie-name">團體防潑水購物袋</div>
-                        <div class="freebie-detail">📍 <span>時間地點：</span>當天公告｜當天公告</div>
-                        
-                        <div class="condition-title">📝 領取條件：</div>
-                        <ul class="condition-list">
-                            <li>出示任何粉絲證明</li>
-                            <li>原貼文按愛心 + 追蹤帳號</li>
-                        </ul>
-
-                        <a href="https://www.threads.com/@1003____ellie/post/Ddy8cJ9G-Dz" target="_blank" class="btn-link">🔗 原文網址</a>
-                    </div>
-                </div>
-
-                <div class="empty-hint">持續新增~~~</div>
+                <div class="empty-hint">尚無資料，歡迎提供！</div>
             </div>
 
             <!-- 吊飾類 -->
@@ -417,6 +391,7 @@
                         <div class="freebie-name">壓克力鑰匙圈（範例）</div>
                         <div class="freebie-detail">📍 <span>時間地點：</span>11/21 15:00｜世運捷運站2號出口</div>
                         
+                        <!-- 條列式領取條件範例 -->
                         <div class="condition-title">📝 領取條件：</div>
                         <ul class="condition-list">
                             <li>出示當日演唱會實體門票</li>
@@ -441,11 +416,14 @@
             <div class="category-section">
                 <div class="category-title">👜 包袋類</div>
                 
+                <!-- 應援物卡片範例 -->
                 <div class="freebie-card">
                     <div class="freebie-img-container">
+                        <!-- 大圖預覽 -->
                         <div class="main-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
                             <img src="https://raw.githubusercontent.com/jaylaokayyy/twkhfreebiesbyjla/main/%E8%A2%8B1.jpg" alt="主圖" class="active-main-img">
                         </div>
+                        <!-- 縮圖切換列 -->
                         <div class="thumb-list">
                             <div class="thumb-item active" onclick="changeImage(this, 'https://raw.githubusercontent.com/jaylaokayyy/twkhfreebiesbyjla/main/%E8%A2%8B1.jpg')">
                                 <img src="https://raw.githubusercontent.com/jaylaokayyy/twkhfreebiesbyjla/main/%E8%A2%8B1.jpg" alt="縮圖1">
@@ -463,6 +441,7 @@
                         <div class="freebie-name">團體防潑水購物袋</div>
                         <div class="freebie-detail">📍 <span>時間地點：</span>當天公告｜當天公告</div>
                         
+                        <!-- 條列式領取條件 -->
                         <div class="condition-title">📝 領取條件：</div>
                         <ul class="condition-list">
                             <li>出示任何粉絲證明</li>
@@ -473,7 +452,7 @@
                     </div>
                 </div>
 
-                <div class="empty-hint">持續新增~~~</div>
+                <div class="empty-hint">尚無資料，歡迎提供！</div>
             </div>
 
             <!-- 吊飾類 -->
@@ -501,6 +480,7 @@
                         <div class="freebie-name">小卡+透卡組（範例）</div>
                         <div class="freebie-detail">📍 <span>時間地點：</span>11/22 14:30｜世運主場館廣場</div>
                         
+                        <!-- 條列式領取條件範例 -->
                         <div class="condition-title">📝 領取條件：</div>
                         <ul class="condition-list">
                             <li>現場回答阿米相關小問題</li>
@@ -522,35 +502,22 @@
     </div>
 
     <script>
-        // 切換日期並記憶狀態
+        // 切換日期
         function switchDay(dayId) {
-            // 隱藏所有內容
             document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
             document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
-            
-            // 顯示選擇的日期
             document.getElementById(dayId).classList.add('active');
-            document.getElementById('btn-' + dayId).classList.add('active');
-
-            // 儲存目前的分頁到瀏覽器紀錄中 (localStorage)
-            localStorage.setItem('selectedDay', dayId);
+            event.currentTarget.classList.add('active');
         }
-
-        // 當網頁載入時自動讀取上一次停留的頁面
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedDay = localStorage.getItem('selectedDay');
-            // 如果有紀錄且該頁面存在，就切換過去；預設為 day1 (11/19)
-            if (savedDay && document.getElementById(savedDay)) {
-                switchDay(savedDay);
-            } else {
-                switchDay('day1');
-            }
-        });
 
         // 點擊縮圖切換主圖
         function changeImage(thumbElement, newImgSrc) {
             const container = thumbElement.closest('.freebie-img-container');
+            
+            // 更換主圖
             container.querySelector('.active-main-img').src = newImgSrc;
+            
+            // 更新縮圖選取樣式
             container.querySelectorAll('.thumb-item').forEach(t => t.classList.remove('active'));
             thumbElement.classList.add('active');
         }
