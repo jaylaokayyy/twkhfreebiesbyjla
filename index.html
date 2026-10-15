@@ -194,6 +194,7 @@
             font-size: 1rem;
             font-weight: bold;
             color: var(--text-main);
+            margin-bottom: 2px;
         }
 
         .freebie-detail {
@@ -205,6 +206,26 @@
         .freebie-detail span {
             font-weight: 600;
             color: var(--bts-light-purple);
+        }
+
+        /* 條列式領取條件樣式 */
+        .condition-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--bts-light-purple);
+            margin-top: 2px;
+        }
+
+        .condition-list {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            padding-left: 18px;
+            margin: 2px 0 4px 0;
+            line-height: 1.5;
+        }
+
+        .condition-list li {
+            margin-bottom: 2px;
         }
 
         .btn-link {
@@ -294,7 +315,7 @@
                 <!-- 應援物卡片範例 -->
                 <div class="freebie-card">
                     <div class="freebie-img-container">
-                        <!-- 大圖預覽 (預設顯示第一張圖 '袋1.jpg') -->
+                        <!-- 大圖預覽 -->
                         <div class="main-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
                             <img src="https://raw.githubusercontent.com/jaylaokayyy/twkhfreebiesbyjla/main/%E8%A2%8B1.jpg" alt="主圖" class="active-main-img">
                         </div>
@@ -314,8 +335,15 @@
 
                     <div class="freebie-info">
                         <div class="freebie-name">團體防潑水購物袋</div>
-                        <div class="freebie-detail">📍 <span>時間地點：</span>11/19 時間當天公告｜地點當天公告</div>
-                        <div class="freebie-detail">📝 <span>領取條件：</span>出示任何粉絲證明 + 原貼文按愛心+追蹤</div>
+                        <div class="freebie-detail">📍 <span>時間地點：</span>11/19 ｜時間地點當天公告</div>
+                        
+                        <!-- 條列式領取條件 -->
+                        <div class="condition-title">📝 領取條件：</div>
+                        <ul class="condition-list">
+                            <li>出示任何粉絲證明</li>
+                            <li>原貼文按愛心 + 追蹤帳號</li>
+                        </ul>
+
                         <a href="https://www.threads.com/@1003____ellie/post/Ddy8cJ9G-Dz" target="_blank" class="btn-link">🔗 原文網址</a>
                     </div>
                 </div>
@@ -347,7 +375,6 @@
             <!-- 吊飾類 -->
             <div class="category-section">
                 <div class="category-title">🧸 吊飾類</div>
-                <!-- 吊飾類範例 -->
                 <div class="freebie-card">
                     <div class="freebie-img-container">
                         <div class="main-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
@@ -363,7 +390,14 @@
                     <div class="freebie-info">
                         <div class="freebie-name">壓克力鑰匙圈（範例）</div>
                         <div class="freebie-detail">📍 <span>時間地點：</span>11/21 15:00｜世運捷運站2號出口</div>
-                        <div class="freebie-detail">📝 <span>領取條件：</span>出示門票即可領取</div>
+                        
+                        <!-- 條列式領取條件範例 -->
+                        <div class="condition-title">📝 領取條件：</div>
+                        <ul class="condition-list">
+                            <li>出示當日演唱會實體門票</li>
+                            <li>喊出指定口號「BORAHEE」</li>
+                        </ul>
+
                         <a href="#" target="_blank" class="btn-link">🔗 原文網址</a>
                     </div>
                 </div>
@@ -393,7 +427,6 @@
             <!-- 其他 -->
             <div class="category-section">
                 <div class="category-title">✨ 其他</div>
-                <!-- 其他類範例 -->
                 <div class="freebie-card">
                     <div class="freebie-img-container">
                         <div class="main-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
@@ -409,7 +442,14 @@
                     <div class="freebie-info">
                         <div class="freebie-name">小卡+透卡組（範例）</div>
                         <div class="freebie-detail">📍 <span>時間地點：</span>11/22 14:30｜世運主場館廣場</div>
-                        <div class="freebie-detail">📝 <span>領取條件：</span>現場回答問題</div>
+                        
+                        <!-- 條列式領取條件範例 -->
+                        <div class="condition-title">📝 領取條件：</div>
+                        <ul class="condition-list">
+                            <li>現場回答阿米相關小問題</li>
+                            <li>一人限領乙份，送完為止</li>
+                        </ul>
+
                         <a href="#" target="_blank" class="btn-link">🔗 原文網址</a>
                     </div>
                 </div>
