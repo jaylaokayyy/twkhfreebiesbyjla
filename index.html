@@ -13,6 +13,7 @@
             --text-main: #333333;
             --text-sub: #666666;
             --tag-bg: #f0e6f5;
+            --checked-bg: #f1edf5;
         }
 
         * {
@@ -112,6 +113,100 @@
             display: flex;
             gap: 14px;
             align-items: flex-start;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        /* 打勾領取狀態 (已領取時的卡片樣式) */
+        .freebie-card.collected {
+            background: var(--checked-bg);
+            border: 1px dashed #c0b0ce;
+            box-shadow: none;
+            padding: 10px 14px;
+            gap: 0;
+        }
+
+        /* 折疊內容：隱藏圖片與詳細資料 */
+        .freebie-card.collected .freebie-img-container,
+        .freebie-card.collected .freebie-detail,
+        .freebie-card.collected .condition-title,
+        .freebie-card.collected .condition-list,
+        .freebie-card.collected .btn-link {
+            display: none !important;
+        }
+
+        /* 已領取的標題與 Checkbox 列樣式 */
+        .card-header-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 4px;
+        }
+
+        .freebie-card.collected .card-header-bar {
+            margin-bottom: 0;
+        }
+
+        .title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .freebie-name {
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--text-main);
+            transition: color 0.2s;
+        }
+
+        /* 打勾後的標題劃線與變灰效果 */
+        .freebie-card.collected .freebie-name {
+            text-decoration: line-through;
+            color: #888888;
+        }
+
+        /* 已領取標籤 */
+        .collected-badge {
+            display: none;
+            font-size: 0.72rem;
+            background-color: #a48bb5;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .freebie-card.collected .collected-badge {
+            display: inline-block;
+        }
+
+        /* Checkbox 樣式優化 */
+        .check-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.82rem;
+            color: var(--bts-purple);
+            font-weight: 600;
+            cursor: pointer;
+            user-select: none;
+            background: var(--tag-bg);
+            padding: 4px 10px;
+            border-radius: 20px;
+            transition: background 0.2s;
+        }
+
+        .check-label:hover {
+            background: #e2cfe9;
+        }
+
+        .check-label input[type="checkbox"] {
+            accent-color: var(--bts-purple);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
         }
 
         /* 多圖預覽區塊 */
@@ -188,13 +283,7 @@
             display: flex;
             flex-direction: column;
             gap: 4px;
-        }
-
-        .freebie-name {
-            font-size: 1rem;
-            font-weight: bold;
-            color: var(--text-main);
-            margin-bottom: 2px;
+            width: 100%;
         }
 
         .freebie-detail {
@@ -312,7 +401,8 @@
             <div class="category-section">
                 <div class="category-title">👜 包袋類</div>
                 
-                <div class="freebie-card">
+                <!-- 卡片 1 (帶有 data-id 供持久記憶) -->
+                <div class="freebie-card" data-id="freebie-bag-1">
                     <div class="freebie-img-container">
                         <div class="main-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
                             <img src="https://raw.githubusercontent.com/jaylaokayyy/twkhfreebiesbyjla/main/%E8%A2%8B1.jpg" alt="主圖" class="active-main-img">
@@ -331,8 +421,17 @@
                     </div>
 
                     <div class="freebie-info">
-                        <div class="freebie-name">團體防潑水購物袋</div>
-                        <div class="freebie-detail">📍 <span>時間地點：</span>當天公告｜當天公告</div>
+                        <div class="card-header-bar">
+                            <div class="title-wrap">
+                                <div class="freebie-name">團體防潑水購物袋</div>
+                                <span class="collected-badge">✓ 已領取</span>
+                            </div>
+                            <label class="check-label">
+                                <input type="checkbox" onchange="toggleCollect(this)"> 已領取
+                            </label>
+                        </div>
+
+                        <div class="freebie-detail">📍 <span>時間地點：</span>11/19 時間當天公告｜地點當天公告</div>
                         
                         <div class="condition-title">📝 領取條件：</div>
                         <ul class="condition-list">
@@ -365,45 +464,15 @@
             <!-- 包袋類 -->
             <div class="category-section">
                 <div class="category-title">👜 包袋類</div>
-                
-                <div class="freebie-card">
-                    <div class="freebie-img-container">
-                        <div class="main-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
-                            <img src="https://github.com/jaylaokayyy/twkhfreebiesbyjla/blob/main/%E8%A2%8B4.jpg?raw=true" alt="主圖" class="active-main-img">
-                        </div>
-                        <div class="thumb-list">
-                            <div class="thumb-item active" onclick="changeImage(this, 'https://github.com/jaylaokayyy/twkhfreebiesbyjla/blob/main/%E8%A2%8B4.jpg?raw=true')">
-                                <img src="https://github.com/jaylaokayyy/twkhfreebiesbyjla/blob/main/%E8%A2%8B4.jpg?raw=true" alt="縮圖1">
-                            </div>
-                            <div class="thumb-item" onclick="changeImage(this, 'https://github.com/jaylaokayyy/twkhfreebiesbyjla/blob/main/%E8%A2%8B5.jpg?raw=true')">
-                                <img src="https://github.com/jaylaokayyy/twkhfreebiesbyjla/blob/main/%E8%A2%8B5.jpg?raw=true" alt="縮圖2">
-                            </div>
-                           
-                        </div>
-                    </div>
-
-                    <div class="freebie-info">
-                        <div class="freebie-name">BTS LOGO提袋</div>
-                        <div class="freebie-detail">👉🏻 <span>發放數量：</span>200個</div>
-                        <div class="freebie-detail">📍 <span>時間地點：</span>近期公告｜近期公告</div>
-                        <div class="freebie-detail">✨ <span>剛好放得下兩隻阿米棒</div>
-                        
-                        <div class="condition-title">📝 領取條件：</div>
-                        <ul class="condition-list">
-                            <li>尚無相關資訊</li>
-                        </ul>
-
-                        <a href="https://www.threads.com/@yi_wun618/post/DbbCGwQlCFN" target="_blank" class="btn-link">🔗 原文網址</a>
-                    </div>
-                </div>
-
-                <div class="empty-hint">持續新增~~~</div>
+                <div class="empty-hint">尚無資料，歡迎提供！</div>
             </div>
 
             <!-- 吊飾類 -->
             <div class="category-section">
                 <div class="category-title">🧸 吊飾類</div>
-                <div class="freebie-card">
+                
+                <!-- 卡片 2 -->
+                <div class="freebie-card" data-id="freebie-charm-1">
                     <div class="freebie-img-container">
                         <div class="main-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
                             <img src="https://raw.githubusercontent.com/jaylaokayyy/twkhfreebiesbyjla/main/%E8%A2%8B2.jpg" alt="主圖" class="active-main-img">
@@ -416,7 +485,16 @@
                     </div>
 
                     <div class="freebie-info">
-                        <div class="freebie-name">壓克力鑰匙圈（範例）</div>
+                        <div class="card-header-bar">
+                            <div class="title-wrap">
+                                <div class="freebie-name">壓克力鑰匙圈（範例）</div>
+                                <span class="collected-badge">✓ 已領取</span>
+                            </div>
+                            <label class="check-label">
+                                <input type="checkbox" onchange="toggleCollect(this)"> 已領取
+                            </label>
+                        </div>
+
                         <div class="freebie-detail">📍 <span>時間地點：</span>11/21 15:00｜世運捷運站2號出口</div>
                         
                         <div class="condition-title">📝 領取條件：</div>
@@ -442,39 +520,6 @@
             <!-- 包袋類 -->
             <div class="category-section">
                 <div class="category-title">👜 包袋類</div>
-                
-                <div class="freebie-card">
-                    <div class="freebie-img-container">
-                        <div class="main-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
-                            <img src="https://raw.githubusercontent.com/jaylaokayyy/twkhfreebiesbyjla/main/%E8%A2%8B1.jpg" alt="主圖" class="active-main-img">
-                        </div>
-                        <div class="thumb-list">
-                            <div class="thumb-item active" onclick="changeImage(this, 'https://raw.githubusercontent.com/jaylaokayyy/twkhfreebiesbyjla/main/%E8%A2%8B1.jpg')">
-                                <img src="https://raw.githubusercontent.com/jaylaokayyy/twkhfreebiesbyjla/main/%E8%A2%8B1.jpg" alt="縮圖1">
-                            </div>
-                            <div class="thumb-item" onclick="changeImage(this, 'https://raw.githubusercontent.com/jaylaokayyy/twkhfreebiesbyjla/main/%E8%A2%8B2.jpg')">
-                                <img src="https://raw.githubusercontent.com/jaylaokayyy/twkhfreebiesbyjla/main/%E8%A2%8B2.jpg" alt="縮圖2">
-                            </div>
-                            <div class="thumb-item" onclick="changeImage(this, 'https://raw.githubusercontent.com/jaylaokayyy/twkhfreebiesbyjla/main/%E8%A2%8B3.jpg')">
-                                <img src="https://raw.githubusercontent.com/jaylaokayyy/twkhfreebiesbyjla/main/%E8%A2%8B3.jpg" alt="縮圖3">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="freebie-info">
-                        <div class="freebie-name">團體防潑水購物袋</div>
-                        <div class="freebie-detail">📍 <span>時間地點：</span>當天公告｜當天公告</div>
-                        
-                        <div class="condition-title">📝 領取條件：</div>
-                        <ul class="condition-list">
-                            <li>出示任何粉絲證明</li>
-                            <li>原貼文按愛心 + 追蹤帳號</li>
-                        </ul>
-
-                        <a href="https://www.threads.com/@1003____ellie/post/Ddy8cJ9G-Dz" target="_blank" class="btn-link">🔗 原文網址</a>
-                    </div>
-                </div>
-
                 <div class="empty-hint">尚無資料，歡迎提供！</div>
             </div>
 
@@ -487,7 +532,9 @@
             <!-- 其他 -->
             <div class="category-section">
                 <div class="category-title">✨ 其他</div>
-                <div class="freebie-card">
+
+                <!-- 卡片 3 -->
+                <div class="freebie-card" data-id="freebie-other-1">
                     <div class="freebie-img-container">
                         <div class="main-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
                             <img src="https://raw.githubusercontent.com/jaylaokayyy/twkhfreebiesbyjla/main/%E8%A2%8B3.jpg" alt="主圖" class="active-main-img">
@@ -500,7 +547,16 @@
                     </div>
 
                     <div class="freebie-info">
-                        <div class="freebie-name">小卡+透卡組（範例）</div>
+                        <div class="card-header-bar">
+                            <div class="title-wrap">
+                                <div class="freebie-name">小卡+透卡組（範例）</div>
+                                <span class="collected-badge">✓ 已領取</span>
+                            </div>
+                            <label class="check-label">
+                                <input type="checkbox" onchange="toggleCollect(this)"> 已領取
+                            </label>
+                        </div>
+
                         <div class="freebie-detail">📍 <span>時間地點：</span>11/22 14:30｜世運主場館廣場</div>
                         
                         <div class="condition-title">📝 領取條件：</div>
@@ -524,32 +580,76 @@
     </div>
 
     <script>
-        // 切換日期並記憶狀態
+        // --- 1. 日期切換與狀態記憶 ---
         function switchDay(dayId) {
-            // 隱藏所有內容
             document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
             document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
             
-            // 顯示選擇的日期
             document.getElementById(dayId).classList.add('active');
             document.getElementById('btn-' + dayId).classList.add('active');
 
-            // 儲存目前的分頁到瀏覽器紀錄中 (localStorage)
             localStorage.setItem('selectedDay', dayId);
         }
 
-        // 當網頁載入時自動讀取上一次停留的頁面
+        // --- 2. 切換已領取/打勾折疊狀態 ---
+        function toggleCollect(checkbox) {
+            const card = checkbox.closest('.freebie-card');
+            const cardId = card.getAttribute('data-id');
+
+            if (checkbox.checked) {
+                card.classList.add('collected');
+            } else {
+                card.classList.remove('collected');
+            }
+
+            // 將各卡片狀態更新存入 localStorage
+            saveCollectionState();
+        }
+
+        // 儲存所有卡片的領取狀態
+        function saveCollectionState() {
+            const collectedIds = [];
+            document.querySelectorAll('.freebie-card').forEach(card => {
+                const checkbox = card.querySelector('input[type="checkbox"]');
+                const cardId = card.getAttribute('data-id');
+                if (checkbox && checkbox.checked && cardId) {
+                    collectedIds.push(cardId);
+                }
+            });
+            localStorage.setItem('collectedFreebies', JSON.stringify(collectedIds));
+        }
+
+        // 載入已儲存的領取狀態
+        function loadCollectionState() {
+            const savedState = localStorage.getItem('collectedFreebies');
+            if (!savedState) return;
+
+            const collectedIds = JSON.parse(savedState);
+            document.querySelectorAll('.freebie-card').forEach(card => {
+                const cardId = card.getAttribute('data-id');
+                const checkbox = card.querySelector('input[type="checkbox"]');
+                if (cardId && collectedIds.includes(cardId) && checkbox) {
+                    checkbox.checked = true;
+                    card.classList.add('collected');
+                }
+            });
+        }
+
+        // --- 3. 網頁初始載入 ---
         window.addEventListener('DOMContentLoaded', () => {
+            // 恢復停留的日期
             const savedDay = localStorage.getItem('selectedDay');
-            // 如果有紀錄且該頁面存在，就切換過去；預設為 day1 (11/19)
             if (savedDay && document.getElementById(savedDay)) {
                 switchDay(savedDay);
             } else {
                 switchDay('day1');
             }
+
+            // 恢復打勾領取狀態
+            loadCollectionState();
         });
 
-        // 點擊縮圖切換主圖
+        // --- 4. 縮圖切換功能 ---
         function changeImage(thumbElement, newImgSrc) {
             const container = thumbElement.closest('.freebie-img-container');
             container.querySelector('.active-main-img').src = newImgSrc;
@@ -557,7 +657,7 @@
             thumbElement.classList.add('active');
         }
 
-        // 打開燈箱看大圖
+        // --- 5. 燈箱開啟/關閉 ---
         function openLightbox(imgSrc) {
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
@@ -565,7 +665,6 @@
             lightbox.classList.add('active');
         }
 
-        // 關閉燈箱
         function closeLightbox() {
             document.getElementById('lightbox').classList.remove('active');
         }
