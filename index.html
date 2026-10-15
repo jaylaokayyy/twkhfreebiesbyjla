@@ -107,26 +107,80 @@
             background: var(--card-bg);
             border-radius: 12px;
             padding: 14px;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.06);
             display: flex;
             gap: 14px;
-            align-items: center;
+            align-items: flex-start;
         }
 
-        .freebie-img {
-            width: 90px;
-            height: 90px;
-            border-radius: 8px;
-            background-color: #eee;
-            object-fit: cover;
+        /* 多圖預覽區塊 */
+        .freebie-img-container {
+            width: 100px;
             flex-shrink: 0;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-            font-size: 0.75rem;
-            text-align: center;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .main-img-wrap {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #eee;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .main-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.2s;
+        }
+
+        .main-img-wrap:hover img {
+            transform: scale(1.05);
+        }
+
+        /* 縮圖列 */
+        .thumb-list {
+            display: flex;
+            gap: 4px;
+            overflow-x: auto;
+            padding-bottom: 2px;
+        }
+
+        .thumb-list::-webkit-scrollbar {
+            height: 3px;
+        }
+        .thumb-list::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 2px;
+        }
+
+        .thumb-item {
+            width: 28px;
+            height: 28px;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            opacity: 0.6;
+            border: 1px solid transparent;
+            flex-shrink: 0;
+            background-color: #eee;
+        }
+
+        .thumb-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .thumb-item.active {
+            opacity: 1;
+            border-color: var(--bts-purple);
         }
 
         .freebie-info {
@@ -177,6 +231,43 @@
             padding: 8px 0;
             font-style: italic;
         }
+
+        /* 全螢幕大圖燈箱 (Lightbox) 樣式 */
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #lightbox.active {
+            display: flex;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 8px;
+            object-fit: contain;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -199,16 +290,36 @@
             <!-- 包袋類 -->
             <div class="category-section">
                 <div class="category-title">👜 包袋類</div>
+                
+                <!-- 多圖應援物卡片範例 -->
                 <div class="freebie-card">
-                    <!-- 圖片欄位：可替換成您的圖片網址 src="..." -->
-                    <img src="https://via.placeholder.com/90" alt="應援物圖片" class="freebie-img">
+                    <div class="freebie-img-container">
+                        <!-- 大圖預覽 (點擊可放大) -->
+                        <div class="main-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
+                            <img src="https://picsum.photos/id/1015/400/400" alt="主圖" class="active-main-img">
+                        </div>
+                        <!-- 底下縮圖切換列 (可放多張照片) -->
+                        <div class="thumb-list">
+                            <div class="thumb-item active" onclick="changeImage(this, 'https://picsum.photos/id/1015/400/400')">
+                                <img src="https://picsum.photos/id/1015/100/100" alt="縮圖1">
+                            </div>
+                            <div class="thumb-item" onclick="changeImage(this, 'https://picsum.photos/id/1025/400/400')">
+                                <img src="https://picsum.photos/id/1025/100/100" alt="縮圖2">
+                            </div>
+                            <div class="thumb-item" onclick="changeImage(this, 'https://picsum.photos/id/1035/400/400')">
+                                <img src="https://picsum.photos/id/1035/100/100" alt="縮圖3">
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="freebie-info">
-                        <div class="freebie-name">範例：南俊手幅帆布托特包</div>
+                        <div class="freebie-name">範例：南俊手幅帆布托特包（多圖）</div>
                         <div class="freebie-detail">📍 <span>時間地點：</span>11/19 14:00｜世運主場館場外看板下</div>
-                        <div class="freebie-detail">📝 <span>領取條件：</span>出示當日演唱會門票 + 追蹤推特帳號</div>
+                        <div class="freebie-detail">📝 <span>領取條件：</span>出示當日演唱會門票 + 追蹤推特</div>
                         <a href="https://twitter.com" target="_blank" class="btn-link">🔗 原文網址</a>
                     </div>
                 </div>
+
                 <div class="empty-hint">更多品項陸續新增中...</div>
             </div>
 
@@ -227,27 +338,14 @@
 
         <!-- ==================== 11/21 (Day 2) ==================== -->
         <div id="day2" class="day-content">
-            <!-- 包袋類 -->
             <div class="category-section">
                 <div class="category-title">👜 包袋類</div>
                 <div class="empty-hint">尚無資料，歡迎提供！</div>
             </div>
-
-            <!-- 吊飾類 -->
             <div class="category-section">
                 <div class="category-title">🧸 吊飾類</div>
-                <div class="freebie-card">
-                    <img src="https://via.placeholder.com/90" alt="應援物圖片" class="freebie-img">
-                    <div class="freebie-info">
-                        <div class="freebie-name">範例：果果小兔壓克力吊飾</div>
-                        <div class="freebie-detail">📍 <span>時間地點：</span>11/21 15:30｜捷運世運站 1號出口</div>
-                        <div class="freebie-detail">📝 <span>領取條件：</span>喊出通關密語「BORAHEE」</div>
-                        <a href="https://twitter.com" target="_blank" class="btn-link">🔗 原文網址</a>
-                    </div>
-                </div>
+                <div class="empty-hint">尚無資料，歡迎提供！</div>
             </div>
-
-            <!-- 其他 -->
             <div class="category-section">
                 <div class="category-title">✨ 其他</div>
                 <div class="empty-hint">尚無資料，歡迎提供！</div>
@@ -256,51 +354,60 @@
 
         <!-- ==================== 11/22 (Day 3) ==================== -->
         <div id="day3" class="day-content">
-            <!-- 包袋類 -->
             <div class="category-section">
                 <div class="category-title">👜 包袋類</div>
                 <div class="empty-hint">尚無資料，歡迎提供！</div>
             </div>
-
-            <!-- 吊飾類 -->
             <div class="category-section">
                 <div class="category-title">🧸 吊飾類</div>
                 <div class="empty-hint">尚無資料，歡迎提供！</div>
             </div>
-
-            <!-- 其他 -->
             <div class="category-section">
                 <div class="category-title">✨ 其他</div>
-                <div class="freebie-card">
-                    <img src="https://via.placeholder.com/90" alt="應援物圖片" class="freebie-img">
-                    <div class="freebie-info">
-                        <div class="freebie-name">範例：全員透卡組 + 小卡</div>
-                        <div class="freebie-detail">📍 <span>時間地點：</span>11/22 16:00｜場外服務台旁</div>
-                        <div class="freebie-detail">📝 <span>領取條件：</span>不限條件，送完為止</div>
-                        <a href="https://twitter.com" target="_blank" class="btn-link">🔗 原文網址</a>
-                    </div>
-                </div>
+                <div class="empty-hint">尚無資料，歡迎提供！</div>
             </div>
         </div>
 
     </div>
 
+    <!-- 全螢幕大圖燈箱 HTML -->
+    <div id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="放大檢視">
+    </div>
+
     <script>
-        // 切換日期的 JavaScript 邏輯
+        // 切換日期
         function switchDay(dayId) {
-            // 隱藏所有內容
-            const contents = document.querySelectorAll('.day-content');
-            contents.forEach(content => content.classList.remove('active'));
-
-            // 移除所有按鈕的 active 狀態
-            const buttons = document.querySelectorAll('.day-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-
-            // 顯示點選的那一天
+            document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(dayId).classList.add('active');
-            
-            // 將對應按鈕加上 active
             event.currentTarget.classList.add('active');
+        }
+
+        // 點擊縮圖切換主圖
+        function changeImage(thumbElement, newImgSrc) {
+            const container = thumbElement.closest('.freebie-img-container');
+            
+            // 更換主圖
+            container.querySelector('.active-main-img').src = newImgSrc;
+            
+            // 更新縮圖選取樣式
+            container.querySelectorAll('.thumb-item').forEach(t => t.classList.remove('active'));
+            thumbElement.classList.add('active');
+        }
+
+        // 打開燈箱看大圖
+        function openLightbox(imgSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = imgSrc;
+            lightbox.classList.add('active');
+        }
+
+        // 關閉燈箱
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
         }
     </script>
 
