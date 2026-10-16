@@ -312,7 +312,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
+            background-color: rgba(0, 0, 0, 0.9);
             justify-content: center;
             align-items: center;
             flex-direction: column;
@@ -322,9 +322,18 @@
             display: flex;
         }
 
-        #lightbox img {
+        .lightbox-content-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             max-width: 90%;
-            max-height: 80%;
+            max-height: 80vh;
+        }
+
+        #lightbox img {
+            max-width: 80vw;
+            max-height: 75vh;
             border-radius: 8px;
             object-fit: contain;
             box-shadow: 0 4px 20px rgba(0,0,0,0.5);
@@ -335,9 +344,59 @@
             top: 20px;
             right: 25px;
             color: white;
-            font-size: 2rem;
+            font-size: 2.2rem;
             cursor: pointer;
             font-weight: bold;
+            z-index: 1000;
+        }
+
+        /* 左右切換按鈕 */
+        .lightbox-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            font-size: 1.8rem;
+            padding: 12px 16px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background 0.2s;
+            z-index: 1000;
+        }
+
+        .lightbox-btn:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .lightbox-prev {
+            left: -60px;
+        }
+
+        .lightbox-next {
+            right: -60px;
+        }
+
+        /* 底部頁碼提示 */
+        #lightbox-counter {
+            color: white;
+            margin-top: 15px;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 4px 12px;
+            border-radius: 12px;
+        }
+
+        /* 手機版適應左右按鈕位置 */
+        @media (max-width: 768px) {
+            .lightbox-prev {
+                left: 10px;
+            }
+            .lightbox-next {
+                right: 10px;
+            }
         }
     </style>
 </head>
@@ -347,7 +406,7 @@
         <h1>💜 ARIRANG WORLD TOUR KAOHSIUNG FREEBIES 💜</h1>
     </header>
 
-    <!-- 日期切換按鈕 -->
+    <!-- 日期導覽列 (Day Tabs) -->
     <div class="day-tabs">
         <button class="day-btn" id="btn-day1" onclick="switchDay('day1')">11/19 (Day 1)</button>
         <button class="day-btn" id="btn-day2" onclick="switchDay('day2')">11/21 (Day 2)</button>
@@ -364,7 +423,7 @@
                 
                 <div class="freebie-card" id="card-119-bag1">
                     <div class="freebie-img-container">
-                        <div class="main-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
+                        <div class="main-img-wrap" onclick="openLightbox(this)">
                             <img src="https://raw.githubusercontent.com/jaylaokayyy/twkhfreebiesbyjla/main/%E8%A2%8B1.jpg" alt="主圖" class="active-main-img">
                         </div>
                         <div class="thumb-list">
@@ -408,7 +467,7 @@
                 
                 <div class="freebie-card" id="card-119-charm1">
                     <div class="freebie-img-container">
-                        <div class="main-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
+                        <div class="main-img-wrap" onclick="openLightbox(this)">
                             <img src="https://github.com/jaylaokayyy/twkhfreebiesbyjla/blob/main/%E5%90%8A%E9%A3%BE1.jpg?raw=true" alt="主圖" class="active-main-img">
                         </div>
                         <div class="thumb-list">
@@ -446,7 +505,7 @@
                 
                 <div class="freebie-card" id="card-119-other1">
                     <div class="freebie-img-container">
-                        <div class="main-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
+                        <div class="main-img-wrap" onclick="openLightbox(this)">
                             <img src="https://github.com/jaylaokayyy/twkhfreebiesbyjla/blob/main/%E5%85%B6%E4%BB%961.jpg?raw=true" alt="主圖" class="active-main-img">
                         </div>
                         <div class="thumb-list">
@@ -490,7 +549,7 @@
                 
                 <div class="freebie-card" id="card-121-bag1">
                     <div class="freebie-img-container">
-                        <div class="main-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
+                        <div class="main-img-wrap" onclick="openLightbox(this)">
                             <img src="https://github.com/jaylaokayyy/twkhfreebiesbyjla/blob/main/%E8%A2%8B4.jpg?raw=true" alt="主圖" class="active-main-img">
                         </div>
                         <div class="thumb-list">
@@ -531,7 +590,7 @@
                 <div class="category-title">🧸 吊飾類</div>
                 <div class="freebie-card" id="card-121-charm1">
                     <div class="freebie-img-container">
-                        <div class="main-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
+                        <div class="main-img-wrap" onclick="openLightbox(this)">
                             <img src="https://raw.githubusercontent.com/jaylaokayyy/twkhfreebiesbyjla/main/%E8%A2%8B2.jpg" alt="主圖" class="active-main-img">
                         </div>
                         <div class="thumb-list">
@@ -576,7 +635,7 @@
                 
                 <div class="freebie-card" id="card-122-bag1">
                     <div class="freebie-img-container">
-                        <div class="main-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
+                        <div class="main-img-wrap" onclick="openLightbox(this)">
                             <img src="https://raw.githubusercontent.com/jaylaokayyy/twkhfreebiesbyjla/main/%E8%A2%8B1.jpg" alt="主圖" class="active-main-img">
                         </div>
                         <div class="thumb-list">
@@ -617,7 +676,7 @@
                 <div class="category-title">✨ 其他</div>
                 <div class="freebie-card" id="card-122-other1">
                     <div class="freebie-img-container">
-                        <div class="main-img-wrap" onclick="openLightbox(this.querySelector('img').src)">
+                        <div class="main-img-wrap" onclick="openLightbox(this)">
                             <img src="https://raw.githubusercontent.com/jaylaokayyy/twkhfreebiesbyjla/main/%E8%A2%8B3.jpg" alt="主圖" class="active-main-img">
                         </div>
                         <div class="thumb-list">
@@ -650,10 +709,15 @@
 
     </div>
 
-    <!-- 全螢幕大圖燈箱 HTML -->
-    <div id="lightbox" onclick="closeLightbox()">
-        <span class="lightbox-close">&times;</span>
-        <img id="lightbox-img" src="" alt="放大檢視">
+    <!-- 全螢幕大圖燈箱 HTML (含左右切換與頁碼) -->
+    <div id="lightbox" onclick="closeLightbox(event)">
+        <span class="lightbox-close" onclick="closeLightbox(event, true)">&times;</span>
+        <div class="lightbox-content-wrap" onclick="event.stopPropagation()">
+            <button class="lightbox-btn lightbox-prev" onclick="changeLightboxSlide(-1)">&#10094;</button>
+            <img id="lightbox-img" src="" alt="放大檢視">
+            <button class="lightbox-btn lightbox-next" onclick="changeLightboxSlide(1)">&#10095;</button>
+        </div>
+        <div id="lightbox-counter">1 / 1</div>
     </div>
 
     <script>
@@ -711,18 +775,86 @@
             thumbElement.classList.add('active');
         }
 
-        // 打開燈箱看大圖
-        function openLightbox(imgSrc) {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = imgSrc;
-            lightbox.classList.add('active');
+        // ==================== 燈箱圖片輪播系統 ====================
+        let currentLightboxImages = [];
+        let currentLightboxIndex = 0;
+
+        // 打開燈箱（會自動抓取該卡片所有的縮圖網址）
+        function openLightbox(element) {
+            const card = element.closest('.freebie-card');
+            const thumbImgs = card.querySelectorAll('.thumb-item img');
+            
+            currentLightboxImages = [];
+            thumbImgs.forEach(img => {
+                currentLightboxImages.push(img.src);
+            });
+
+            // 如果該卡片沒有縮圖，退回直接抓當前主圖
+            if (currentLightboxImages.length === 0) {
+                const mainImg = card.querySelector('.active-main-img');
+                if (mainImg) currentLightboxImages.push(mainImg.src);
+            }
+
+            // 預設從目前顯示的主圖或點擊的圖片開始
+            const activeMainImgSrc = card.querySelector('.active-main-img').src;
+            currentLightboxIndex = currentLightboxImages.indexOf(activeMainImgSrc);
+            if (currentLightboxIndex === -1) currentLightboxIndex = 0;
+
+            updateLightboxView();
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        // 更新燈箱圖片與計數器顯示
+        function updateLightboxView() {
+            const imgElement = document.getElementById('lightbox-img');
+            const counterElement = document.getElementById('lightbox-counter');
+            const prevBtn = document.querySelector('.lightbox-prev');
+            const nextBtn = document.querySelector('.lightbox-next');
+
+            imgElement.src = currentLightboxImages[currentLightboxIndex];
+            counterElement.innerText = `${currentLightboxIndex + 1} / ${currentLightboxImages.length}`;
+
+            // 如果只有一張圖，隱藏左右按鈕
+            if (currentLightboxImages.length <= 1) {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+            } else {
+                prevBtn.style.display = 'block';
+                nextBtn.style.display = 'block';
+            }
+        }
+
+        // 左右切換上一張 / 下一張
+        function changeLightboxSlide(direction) {
+            currentLightboxIndex += direction;
+            if (currentLightboxIndex < 0) {
+                currentLightboxIndex = currentLightboxImages.length - 1; // 循環到最後一張
+            } else if (currentLightboxIndex >= currentLightboxImages.length) {
+                currentLightboxIndex = 0; // 循環到第一張
+            }
+            updateLightboxView();
         }
 
         // 關閉燈箱
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
+        function closeLightbox(event, forceClose = false) {
+            if (forceClose || event.target.id === 'lightbox') {
+                document.getElementById('lightbox').classList.remove('active');
+            }
         }
+
+        // 鍵盤左右鍵快捷支援
+        document.addEventListener('keydown', (e) => {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'ArrowLeft') {
+                    changeLightboxSlide(-1);
+                } else if (e.key === 'ArrowRight') {
+                    changeLightboxSlide(1);
+                } else if (e.key === 'Escape') {
+                    lightbox.classList.remove('active');
+                }
+            }
+        });
     </script>
 
 </body>
